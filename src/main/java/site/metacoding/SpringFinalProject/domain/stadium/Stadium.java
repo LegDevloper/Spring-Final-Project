@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Stadium {
 	private Integer id;
-	private String name;
+	private String stadiumName;
 	private Timestamp createdAt;
 }

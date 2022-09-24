@@ -2,16 +2,42 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="site.metacoding.SpringFinalProject.domain.stadium.StadiumDao">
-  <insert id="insert">
-  	INSERT INTO stadium(stadiumName,createdAt) VALUES(#{name},NOW())
-  </insert>
-  <select id="findById" resultType="site.metacoding.SpringFinalProject.domain.stadium.Stadium">
-  	SELECT * FROM stadium WHERE id = #{id}	
-  </select>
-  <select id="findAll" resultType="site.metacoding.SpringFinalProject.domain.stadium.Stadium">
-  	SELECT * FROM stadium
-  </select>
-  <update id="update"></update>
-  <delete id="deleteById"></delete>
-  </mapper>
+<mapper namespace="site.metacoding.SpringFinalProject.domain.stadium.StadiumDao">
+	<insert id="insert">
+		INSERT INTO stadium(stadiumName,createdAt)
+		VALUES(#{name},NOW())
+	</insert>
+	<select id="findToId" resultType="int">
+		SELECT id FROM (SELECT ROW_NUMBER() OVER() AS ROWNO,id,
+		stadiumName, DATE_FORMAT(createdAT,'%Y-%m-%d') AS createdAT
+		FROM stadium) stadium WHERE ROWNO=#{ROWNO} 
+	</select>
+	<select id="findById"
+		resultType="site.metacoding.SpringFinalProject.web.dto.response.stadium.MainDto">
+		SELECT *
+		FROM (SELECT ROW_NUMBER() OVER() AS ROWNO, stadiumName,
+		DATE_FORMAT(createdAT,'%Y-%m-%d') AS createdAT
+		FROM stadium) a
+		WHERE ROWNO = #{ROWNO}
+		
+	</select>
+	<select id="findAll"
+		resultType="site.metacoding.SpringFinalProject.web.dto.response.stadium.MainDto">
+		SELECT *
+		FROM (SELECT ROW_NUMBER() OVER() AS ROWNO, stadiumName,id,
+		DATE_FORMAT(createdAT,'%Y-%m-%d') AS createdAT
+		FROM stadium
+		) a
+		
+	</select>
+
+	<select id="findToStadiumName"
+		resultType="site.metacoding.SpringFinalProject.web.dto.response.stadium.StadiumNameDto">
+		SELECT stadiumName as name
+		FROM stadium;
+	</select>
+	<update id="update">
+		UPDATE stadium SET stadiumName=#{stadiumName} WHERE id=#{ROWNO}
+	</update>
+	<delete id="deleteById"></delete>
+</mapper>

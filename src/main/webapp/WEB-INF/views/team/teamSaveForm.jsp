@@ -8,16 +8,19 @@
 </div>
 <br>
 <div class="d-flex justify-content-center">
-	<div style="width: 400px">
+
+	경기장을 고르세요 :&nbsp; <select id="selectBox">
+		<c:forEach var="stadiumName" items="${stadiumNameList}"> 
+				<option value="${stadiumName.name}">${stadiumName.name}</option>    
+		</c:forEach>
+	</select>
+</div>
+<br>
+
+<div class="d-flex justify-content-center">
+	<div style="width: 200px">
 		<input id="teamName" class="form-control me-2" type="text"
 			placeholder="구단명을 입력하세요">
-	</div>
-</div>
-<
-<div class="d-flex justify-content-center">
-	<div style="width: 400px">
-		<input id="stadiumName" class="form-control me-2" type="text"
-			placeholder="훈련할 경기장명을 입력하세요">
 
 	</div>
 </div>
@@ -31,12 +34,12 @@
 <script>
 	$("#btnInsert").click(()=>{
 		insert();
+
 	});
-	
 	function insert(){
 		let data = {
 			teamName : $("#teamName").val(),
-			stadiumName : $("#stadiumName").val()
+			stadiumName : $("#selectBox option:selected"). val()
 		};
 
 		$.ajax("/join/team", {

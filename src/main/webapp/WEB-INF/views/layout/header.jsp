@@ -23,6 +23,7 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	rel="stylesheet">
+
 <!-- css 서드파티 라이브러리가 아닌 직접만든 css는 가장 아래에 작성 -->
 <link href="/css/style.css" rel="stylesheet">
 </head>
@@ -37,11 +38,16 @@
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="/">경기장 목록</a></li>
-				<li class="nav-item"><a class="nav-link" href="/stadiumJoin">경기장 등록</a></li>
-				<li class="nav-item"><a class="nav-link" href="/teamList">팀 목록</a></li>
-				<li class="nav-item"><a class="nav-link" href="/teamJoin">팀 등록</a></li>
-				<li class="nav-item"><a class="nav-link" href="/">선수 목록</a></li>
-				<li class="nav-item"><a class="nav-link" href="">선수 등록</a></li>
+				<li class="nav-item"><a class="nav-link" href="/stadiumJoin">경기장
+						등록</a></li>
+				<li class="nav-item"><a class="nav-link" href="/teamList">팀
+						목록</a></li>
+				<li class="nav-item"><a class="nav-link" href="/teamJoin">팀
+						등록</a></li>
+				<li class="nav-item"><a class="nav-link" href="/playerList">선수
+						목록</a></li>
+				<li class="nav-item"><a class="nav-link" href="/playerSave">선수
+						등록</a></li>
 				<li class="nav-item"><a class="nav-link" href="">팀 별 포지션 목록</a></li>
 				<li class="nav-item"><a class="nav-link" href="">퇴출한 선수 목록</a></li>
 				<li class="nav-item"><a class="nav-link" href="">퇴출 사유 등록</a></li>

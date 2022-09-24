@@ -25,7 +25,7 @@
 		let data = $("#stadiumName").val();
 	
 
-		$.ajax("/join/stadium", {
+		$.ajax("api/join/stadium", {
 			type: "POST",
 			data: data,
 			headers: {
