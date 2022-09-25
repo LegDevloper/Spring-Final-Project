@@ -41,5 +41,6 @@ public class StadiumService {
 	public void 경기장삭제하기(Integer id) {
 		stadiumDao.deleteById(id);
 	}
+	
 
 }

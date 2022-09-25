@@ -55,9 +55,7 @@ public class StadiumController {
 	}
 	@PutMapping("/update/stadium")
 	public @ResponseBody CMRespDto<?> update(@RequestBody UpdateDto updateDto){
-		System.out.println(updateDto.getROWNO());
 		Integer id = stadiumService.경기장번호보기(updateDto.getROWNO());
-		System.out.println(id);
 		updateDto.setROWNO(id);
 		stadiumService.경기장수정하기(updateDto);
 		
@@ -67,9 +65,6 @@ public class StadiumController {
 	//==============================Delete
 	@DeleteMapping("/delete/stadium/{rowno}")
 	public @ResponseBody CMRespDto<?> delete(@PathVariable Integer rowno){
-		System.out.println("=================");
-		System.out.println(rowno);
-		System.out.println("=================");
 		Integer id = stadiumService.경기장번호보기(rowno);
 		stadiumService.경기장삭제하기(id);
 		return new CMRespDto<>(1, "삭제성공", null);

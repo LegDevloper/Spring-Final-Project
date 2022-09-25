@@ -9,7 +9,7 @@
 <div class="d-flex justify-content-center">
 
 	<div style="width: 1200px">
-		<table id="myTable" class="table table-striped">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -23,7 +23,7 @@
 
 				<c:forEach var="stadium" items="${stadiumList}">
 					<tr>
-						<td class="num">${stadium.ROWNO}</td>
+						<td>${stadium.ROWNO}</td>
 						<td>${stadium.stadiumName}</td>
 						<td>${stadium.createdAT}</td>
 						<td><button class="btnUpdate" type="button"><i class="fa-solid fa-pen-clip"></i></button></td>

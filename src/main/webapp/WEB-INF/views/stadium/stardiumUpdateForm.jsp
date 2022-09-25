@@ -18,15 +18,12 @@
 </div>
 
 <script>
-	
-	
-	
+
 	$("#btnInsert").click(()=>{
 		let data = {
 				rowno : $("#rowno").val(),
 				stadiumName : $("#stadiumName").val()
 		};
-		console.log(data);
 		$.ajax("/update/stadium",{
 			type: "PUT",
 			dataType: "json",
@@ -44,13 +41,6 @@
 			}
 		});
 	});
-	
-	console.log(Number($("#rowno").val()));
-	console.log(typeof(Number($("#rowno").val())));
-	console.log($("#stadiumName").val());
-	
-	
-
 </script>
 
 
