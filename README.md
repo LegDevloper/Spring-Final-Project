@@ -3,8 +3,8 @@
 
 ### DB세팅
 ``` SQL
-create user 'final'@'%' identified by 'bitc5600';
-GRANT ALL PRIVILEGES ON *.* TO 'final'@'%';
+create user 'green'@'%' identified by 'bitc5600';
+GRANT ALL PRIVILEGES ON *.* TO 'green'@'%';
 create database final;
 use final;
 ```

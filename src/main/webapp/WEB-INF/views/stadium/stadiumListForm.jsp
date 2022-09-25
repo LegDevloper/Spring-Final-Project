@@ -7,6 +7,7 @@
 </div>
 <br>
 <div class="d-flex justify-content-center">
+
 	<div style="width: 1200px">
 		<table id="myTable" class="table table-striped">
 			<thead>
@@ -27,7 +28,7 @@
 						<td>${stadium.createdAT}</td>
 						<td><button class="btnUpdate" type="button"><i class="fa-solid fa-pen-clip"></i></button></td>
 						
-						<td><i class="fa-solid fa-eraser"></i></td>
+						<td><button class="btnDelete" type="button"><i class="fa-solid fa-eraser"></i></button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -40,6 +41,29 @@
 	      let id = $(this).closest('tr').index()+1;
 	      location.href=("/stadium/update/"+id);
 	  });
+	  
+	  $(".btnDelete").bind('click',function(){
+		  let id = $(this).closest('tr').index()+1;
+		  
+		 
+		  $.ajax("/delete/stadium/"+id,{
+			  type: "DELETE",
+			  dataType:"json",
+		  }).done((res)=>{
+			  if(res.code==1){
+				  let confirmData = confirm("경기장 정보를 삭제할까요?");
+				  if(confirmData){
+					  location.reload();
+				  }
+				  else{
+					 // alert("취소하겠습니다"); 취소할때 기능넣어야함
+				  }
+			  }
+			  else{
+				  alert("삭제실패!");
+			  }
+		  });
+	  })
 	  
 
 	

@@ -39,5 +39,7 @@
 	<update id="update">
 		UPDATE stadium SET stadiumName=#{stadiumName} WHERE id=#{ROWNO}
 	</update>
-	<delete id="deleteById"></delete>
+	<delete id="deleteById">
+		DELETE FROM stadium WHERE id=#{id}
+	</delete>
 </mapper>
