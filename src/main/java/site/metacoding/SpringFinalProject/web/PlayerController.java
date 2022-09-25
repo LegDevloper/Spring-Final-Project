@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +46,8 @@ public class PlayerController {
 	public String playerList(Model model) {
 		List<MainDto> playerList = playerService.선수목록보기();
 		model.addAttribute("playerList",playerList);
+		List<site.metacoding.SpringFinalProject.web.dto.response.team.MainDto> teamList = teamService.팀목록보기();
+		model.addAttribute("teamList",teamList);
 		return "/player/playerListForm";
 	}
 	
