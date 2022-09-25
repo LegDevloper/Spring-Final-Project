@@ -48,7 +48,7 @@
 
 		  $.ajax("/delete/team/"+rowno,{
 			  type: "DELETE",
-			  dataType:"json",
+			  dataType:"json"
 		  }).done((res)=>{
 			  if(res.code==1){
 				  let confirmData = confirm("팀을 삭제할까요?");

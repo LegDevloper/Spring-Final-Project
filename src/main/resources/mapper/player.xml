@@ -2,22 +2,37 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="site.metacoding.SpringFinalProject.domain.player.PlayerDao">
+<mapper namespace="site.metacoding.SpringFinalProject.domain.player.PlayerDao">
 	<insert id="insert">
-		INSERT INTO player(teamName,playerName,position,createdAt)
-		VALUES(#{teamName},#{playerName},#{position}, NOW())
+		INSERT INTO player(teamName,playerName,posi,createdAt)
+		VALUES(#{teamName},#{playerName},#{posi}, NOW())
 	</insert>
-	<select id="findById"
-		resultType="site.metacoding.SpringFinalProject.domain.player.Player">
+	<select id="findById" resultType="site.metacoding.SpringFinalProject.domain.player.Player">
 		SELECT * FROM player WHERE id = #{id}
 	</select>
 	<select id="findAll"
 		resultType="site.metacoding.SpringFinalProject.web.dto.response.player.MainDto">
-		SELECT ROW_NUMBER() OVER() AS ROWNO, teamName,playerName,POSITION, TO_CHAR(createdAt, 'YYYY-MM-DD') as createdAT
+		SELECT ROW_NUMBER() OVER() AS ROWNO, id, teamName,playerName,posi,
+		TO_CHAR(createdAt,
+		'YYYY-MM-DD') as createdAT
 		FROM player
 	</select>
+	<select id="findToId" resultType="Integer">
+		SELECT id FROM (SELECT ROW_NUMBER() OVER() AS ROWNO,id,
+		teamName,playerName,posi, TO_CHAR(createdAt, 'YYYY-MM-DD') as createdAT
+		FROM player) player
+		WHERE
+		rowno=#{rowno}
+	</select>
 
-	<update id="update"></update>
-	<delete id="deleteById"></delete>
+	<select id="findToName" resultType="String">
+		SELECT playerName FROM player WHERE id=#{id}
+	</select>
+	<update id="update">
+		UPDATE player SET teamName=#{teamName}, playerName=#{playerName}, posi=#{posi}
+		WHERE id=#{id}
+	</update>
+	<delete id="deleteById">
+		DELETE FROM player WHERE id=#{id}
+	</delete>
 </mapper>

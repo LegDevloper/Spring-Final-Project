@@ -10,6 +10,6 @@ public class MainDto {
 	private Integer ROWNO;
 	private String teamName;
 	private String playerName;
-	private String POSITION;
+	private String posi;
 	private String createdAT;
 }

@@ -48,7 +48,7 @@
 		 
 		  $.ajax("/delete/stadium/"+id,{
 			  type: "DELETE",
-			  dataType:"json",
+			  dataType:"json"
 		  }).done((res)=>{
 			  if(res.code==1){
 				  let confirmData = confirm("경기장 정보를 삭제할까요?");

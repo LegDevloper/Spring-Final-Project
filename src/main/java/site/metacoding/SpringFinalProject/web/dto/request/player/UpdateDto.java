@@ -2,13 +2,12 @@ package site.metacoding.SpringFinalProject.web.dto.request.player;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @NoArgsConstructor
 @Getter
-@Setter
-public class PlayerJoinDto {
+public class UpdateDto {
 	private String teamName;
-	private String playerName;
 	private String posi;
+	private String playerName;
+	private Integer id;
 }

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <br>
 
@@ -15,12 +14,13 @@
 				<tr>
 					<th>번호</th>
 					<th>팀 이름</th>
-					<th>포지션</th>
 					<th>선수 이름</th>
+					<th>포지션</th>
 					<th>등록일</th>
 					<th>수정</th>
 					<th>삭제</th>
 				</tr>
+
 			</thead>
 			<tbody>
 				<c:forEach var="player" items="${playerList}" step="1">
@@ -28,20 +28,54 @@
 						<td>${player.ROWNO}</td>
 						<td>${player.teamName}</td>
 						<td>${player.playerName}</td>
-						<td>${player.POSITION}</td>
+						<td>${player.posi}</td>
 						<td>${player.createdAT}</td>
-						<td><i class="fa-solid fa-pen-clip"></i></td>
-						<td><i class="fa-solid fa-eraser"></i></td>
+						<td><button class="btnUpdate" type="button">
+								<i class="fa-solid fa-pen-clip"></i>
+							</button></td>
+						<td><input name="check" type="checkbox" class="checkDelete"></td>
 					</tr>
 				</c:forEach>
-
-
 
 			</tbody>
 		</table>
 	</div>
 </div>
+<div class="d-flex justify-content-end">
+	<button class="btn btn-danger" type="button" id="btnDelete" style="margin-right:120px">삭제</button>
+</div>
 
+<script>
+	$('.btnUpdate').bind('click', function() {
+		let rowno = $(this).closest('tr').index() + 1;
+		location.href = ("/player/update/" + rowno);
+	});
+
+	$('#btnDelete').bind('click', function() {
+		let arr = [];
+		$("input:checkbox[name='check']:checked").each(function(k,kVal){
+			let tr = kVal.parentElement.parentElement;
+			let td = tr.children[0];
+			
+			arr[k]=$(td).text();
+		});
+		$.ajax("/player/delete",{
+			type: "POST",
+			dataType:"json",
+			data:{ 
+				arr : arr 
+			},
+			traditional: true
+		}).done((res)=>{
+			if(res.code==1){
+				alert("삭제성공");
+				location.href="/playerList"
+			}
+		});
+		
+		
+	});
+</script>
 
 
 <%@ include file="../layout/footer.jsp"%>
