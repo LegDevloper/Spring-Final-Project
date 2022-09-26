@@ -14,5 +14,6 @@ public class Player {
 	private String teamName;
 	private String playerName;
 	private String position;
+	private Boolean isOut;
 	private Timestamp createdAt;
 }

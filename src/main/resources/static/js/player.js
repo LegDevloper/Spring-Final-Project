@@ -11,7 +11,7 @@ $("#btnInsert").click(() => {
 	playerJoin();
 });
 
-$(".btnUpdate").click(() => {
+$(".btnUpdate").click(function() {
 	let rowno = $(this).closest('tr').index() + 1;
 	location.href = ("/player/update/" + rowno);
 });

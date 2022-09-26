@@ -54,6 +54,9 @@ public class PlayerController {
 	public String teamUpdateForm(@PathVariable Integer rowno, Model model) {
 		List<TeamListDto> teamNameList = teamService.팀명보기();
 		Integer id = playerService.선수번호보기(rowno);
+		System.out.println("==================");
+		System.out.println(id);
+		System.out.println("==================");
 		String playerName = playerService.선수이름보기(id);
 		model.addAttribute("id",id);
 		model.addAttribute("teamNameList",teamNameList);
