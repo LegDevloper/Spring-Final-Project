@@ -46,8 +46,6 @@ public class PlayerController {
 	public String playerList(Model model) {
 		List<MainDto> playerList = playerService.선수목록보기();
 		model.addAttribute("playerList",playerList);
-		List<site.metacoding.SpringFinalProject.web.dto.response.team.MainDto> teamList = teamService.팀목록보기();
-		model.addAttribute("teamList",teamList);
 		return "/player/playerListForm";
 	}
 	
@@ -72,10 +70,14 @@ public class PlayerController {
 	//=====================Delete
 	@PostMapping("/player/delete")
 	public @ResponseBody CMRespDto<?> delete(@RequestParam(value="arr", required=false) String[] arr){
+		Integer []arrInt = new Integer[arr.length];
 		for(int i=0;i<arr.length;i++) {
 			Integer rowno = Integer.parseInt(arr[i]);
 			Integer id = playerService.선수번호보기(rowno);
-			playerService.선수삭제(id);
+			arrInt[i]=id;
+		}
+		for(int i=0;i<arrInt.length;i++) {
+			playerService.선수삭제(arrInt[i]);
 		}
 		return new CMRespDto<>(1,"통신성공",null);
 	}

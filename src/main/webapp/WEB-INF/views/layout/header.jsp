@@ -50,7 +50,7 @@
 						등록</a></li>
 				<li class="nav-item"><a class="nav-link" href="">팀 별 포지션 목록</a></li>
 				<li class="nav-item"><a class="nav-link" href="">퇴출한 선수 목록</a></li>
-				<li class="nav-item"><a class="nav-link" href="">퇴출 사유 등록</a></li>
+				<li class="nav-item"><a class="nav-link" href="/kickoutJoinForm">퇴출 사유 등록</a></li>
 			</ul>
 		</div>
 	</div>

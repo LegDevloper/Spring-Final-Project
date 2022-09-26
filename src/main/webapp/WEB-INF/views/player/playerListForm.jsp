@@ -10,15 +10,6 @@
 
 <div>
 	<div class="d-flex justify-content-center">
-		보고싶은 구단을 선택하세요 : &nbsp; <select id="selectTeam">
-			<option value="base" selected="selected">전체보기</option>
-			<c:forEach var="team" items="${teamList}">
-				<option value="${team.teamName}">${team.teamName}</option>
-			</c:forEach>
-		</select>
-	</div>
-	<br>
-	<div class="d-flex justify-content-center">
 		<div style="width: 1200px">
 			<table class="table table-striped">
 
@@ -59,12 +50,11 @@
 	</div>
 </div>
 <script>
-	$('.btnUpdate').bind('click', function() {
+	$(".btnUpdate").click(()=>{
 		let rowno = $(this).closest('tr').index() + 1;
 		location.href = ("/player/update/" + rowno);
 	});
-
-	$('#btnDelete').bind('click', function() {
+	$("#btnDelete").click(()=>{
 		let arr = [];
 		$("input:checkbox[name='check']:checked").each(function(k,kVal){
 			let tr = kVal.parentElement.parentElement;
@@ -72,6 +62,7 @@
 			
 			arr[k]=$(td).text();
 		});
+		
 		$.ajax("/player/delete",{
 			type: "POST",
 			dataType:"json",
@@ -86,7 +77,31 @@
 			}
 		});
 	});
-	
+/*
+	$('#btnDelete').bind('click', function() {
+		let arr = [];
+		$("input:checkbox[name='check']:checked").each(function(k,kVal){
+			let tr = kVal.parentElement.parentElement;
+			let td = tr.children[0];
+			
+			arr[k]=$(td).text();
+		});
+		
+		$.ajax("/player/delete",{
+			type: "POST",
+			dataType:"json",
+			data:{ 
+				arr : arr 
+			},
+			traditional: true
+		}).done((res)=>{
+			if(res.code==1){
+				alert("삭제성공");
+				location.href="/playerList"
+			}
+		});
+	});
+*/
 	
 </script>
 
