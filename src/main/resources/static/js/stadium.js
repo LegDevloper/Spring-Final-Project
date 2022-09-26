@@ -8,14 +8,13 @@ $("#btnUpdate").click(() => {
 $("#btnInsert").click(() => {
 	insert();
 });
-$('.btnUpdate').bind('click', function() {
+$(".btnUpdate").click(function() {
 	let id = $(this).closest('tr').index() + 1;
 	location.href = ("/stadium/update/" + id);
 });
 
-$(".btnDelete").bind('click', function() {
-	let id = $(this).closest('tr').index() + 1;
-
+$(".btnDelete").click(function() {
+	let id = $(".btnDelete").closest('tr').index() + 1;
 
 	$.ajax("/delete/stadium/" + id, {
 		type: "DELETE",
@@ -34,9 +33,7 @@ $(".btnDelete").bind('click', function() {
 			alert("삭제실패!");
 		}
 	});
-
 });
-
 
 function insert() {
 	let data = $("#stadiumName").val();

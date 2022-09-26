@@ -27,7 +27,6 @@
 						<td>${stadium.stadiumName}</td>
 						<td>${stadium.createdAT}</td>
 						<td><button class="btnUpdate" type="button"><i class="fa-solid fa-pen-clip"></i></button></td>
-						
 						<td><button class="btnDelete" type="button"><i class="fa-solid fa-eraser"></i></button></td>
 					</tr>
 				</c:forEach>
