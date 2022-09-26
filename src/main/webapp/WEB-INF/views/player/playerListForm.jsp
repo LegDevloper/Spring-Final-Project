@@ -49,60 +49,7 @@
 		<button class="btn btn-danger" type="button" id="btnDelete" style="margin-right: 410px">삭제</button>
 	</div>
 </div>
-<script>
-	$(".btnUpdate").click(()=>{
-		let rowno = $(this).closest('tr').index() + 1;
-		location.href = ("/player/update/" + rowno);
-	});
-	$("#btnDelete").click(()=>{
-		let arr = [];
-		$("input:checkbox[name='check']:checked").each(function(k,kVal){
-			let tr = kVal.parentElement.parentElement;
-			let td = tr.children[0];
-			
-			arr[k]=$(td).text();
-		});
-		
-		$.ajax("/player/delete",{
-			type: "POST",
-			dataType:"json",
-			data:{ 
-				arr : arr 
-			},
-			traditional: true
-		}).done((res)=>{
-			if(res.code==1){
-				alert("삭제성공");
-				location.href="/playerList"
-			}
-		});
-	});
-/*
-	$('#btnDelete').bind('click', function() {
-		let arr = [];
-		$("input:checkbox[name='check']:checked").each(function(k,kVal){
-			let tr = kVal.parentElement.parentElement;
-			let td = tr.children[0];
-			
-			arr[k]=$(td).text();
-		});
-		
-		$.ajax("/player/delete",{
-			type: "POST",
-			dataType:"json",
-			data:{ 
-				arr : arr 
-			},
-			traditional: true
-		}).done((res)=>{
-			if(res.code==1){
-				alert("삭제성공");
-				location.href="/playerList"
-			}
-		});
-	});
-*/
-	
+<script src="/js/player.js">
 </script>
 
 

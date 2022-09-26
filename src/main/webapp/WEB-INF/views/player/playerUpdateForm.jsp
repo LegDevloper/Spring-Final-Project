@@ -42,38 +42,7 @@
 
 
 
-<script>
-	$("#btnUpdate").click(()=>{
-		
-		
-		let data = {
-				playerName: $("#playerName").val(),
-				teamName : $("#teamName option:selected").text(),
-				id : $("#id").val(),
-				posi : $("#position option:selected").text()
-		};
-	
-		$.ajax("/player/update",{
-			type: "PUT",
-			dataType: "json",
-			data: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json; charset=utf-8"
-			}
-		}).done((res)=>{
-			if (res.code == 1) {
-				alert("선수정보 수정성공");
-				location.href = "/playerList";
-			}else{
-				alert("수정 실패");
-				
-			}
-		});
-		
-	});
-
-		
-	
+<script src="/js/player.js">
 </script>
 
 

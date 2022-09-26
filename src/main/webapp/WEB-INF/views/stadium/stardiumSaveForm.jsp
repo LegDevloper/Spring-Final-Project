@@ -16,29 +16,7 @@
 	<button id="btnInsert" class="btn btn-primary" type="button">등록</button>
 </div>
 
-<script>
-	$("#btnInsert").click(()=>{
-		insert();
-	});
-	
-	function insert(){
-		let data = $("#stadiumName").val();
-	
-
-		$.ajax("api/join/stadium", {
-			type: "POST",
-			data: data,
-			headers: {
-				"Content-Type": "text/html; charset=UTF-8"
-			}
-		}).done((res) => {
-			if (res.code == 1) {
-				alert("경기장 등록성공");
-				location.href = "/";
-			}
-		});
-	}
-
+<script src="/js/stadium.js">
 </script>
 
 

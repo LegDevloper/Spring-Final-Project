@@ -41,37 +41,8 @@
 
 
 
-<script>
-	$("#btnInsert").click(()=>{
-		playerJoin();
-	});
+<script src="/js/player.js">
 	
-	function playerJoin(){
-		let data = {
-				teamName : $("#teamName option:selected").val(),
-				playerName : $("#playerName").val(),
-				posi : $("#position option:selected").text()
-		}
-		console.log(data);
-	
-		$.ajax("/player/join",{
-			type: "POST",
-			dataType: "json",
-			data: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json; charset=UTF-8"
-			}
-		}).done((res)=>{
-			if (res.code == 1) {
-				alert("선수 등록성공");
-				location.href = "/playerList";
-			}else{
-				alert("선수 등록 실패");
-				
-			}
-		});
-		
-	}
 </script>
 
 <%@ include file="../layout/footer.jsp"%>

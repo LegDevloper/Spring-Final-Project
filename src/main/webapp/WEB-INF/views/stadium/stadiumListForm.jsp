@@ -36,37 +36,7 @@
 	</div>
 </div>
 
-<script>
-	  $('.btnUpdate').bind('click', function() { 
-	      let id = $(this).closest('tr').index()+1;
-	      location.href=("/stadium/update/"+id);
-	  });
-	  
-	  $(".btnDelete").bind('click',function(){
-		  let id = $(this).closest('tr').index()+1;
-		  
-		 
-		  $.ajax("/delete/stadium/"+id,{
-			  type: "DELETE",
-			  dataType:"json"
-		  }).done((res)=>{
-			  if(res.code==1){
-				  let confirmData = confirm("경기장 정보를 삭제할까요?");
-				  if(confirmData){
-					  location.reload();
-				  }
-				  else{
-					 // alert("취소하겠습니다"); 취소할때 기능넣어야함
-				  }
-			  }
-			  else{
-				  alert("삭제실패!");
-			  }
-		  });
-	  })
-	  
-
-	
+<script src="/js/stadium.js">
 </script>
 
 <%@ include file="../layout/footer.jsp"%>

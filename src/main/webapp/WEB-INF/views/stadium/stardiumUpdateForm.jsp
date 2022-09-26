@@ -13,34 +13,13 @@
 			placeholder="수정할 경기장 명을 입력하세요">
 
 	</div>
-	<button id="btnInsert" class="btn btn-primary" type="button">수정</button>
+	<button id="btnUpdate" class="btn btn-primary" type="button">수정</button>
 	<input value="${stadium.ROWNO}" id="rowno" type="hidden">
 </div>
 
-<script>
+<script src="/js/stadium.js">
 
-	$("#btnInsert").click(()=>{
-		let data = {
-				rowno : $("#rowno").val(),
-				stadiumName : $("#stadiumName").val()
-		};
-		$.ajax("/update/stadium",{
-			type: "PUT",
-			dataType: "json",
-			data: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json; charset=utf-8"
-			}
-		}).done((res)=>{
-			if (res.code == 1) {
-				alert("경기장정보 수정성공");
-				location.href = "/";
-			}else{
-				alert("수정 실패");
-				
-			}
-		});
-	});
+	
 </script>
 
 
