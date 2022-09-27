@@ -26,7 +26,7 @@ public class StadiumController {
 
 	//==============================Create
 	@PostMapping("api/join/stadium")
-	public @ResponseBody CMRespDto<?> join(@RequestBody String name) {
+	public @ResponseBody CMRespDto<?> join(@RequestBody String name) { //데이터가 1개라도 DTO를 만들고 JSON으로 파싱하자
 		stadiumService.경기장등록(name);
 		return new CMRespDto<>(1, "경기장등록 성공", null);
 	}

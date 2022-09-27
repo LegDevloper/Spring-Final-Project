@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.SpringFinalProject.domain.player.PlayerDao">
 	<insert id="insert">
-		INSERT INTO player(teamName,playerName,posi,is_out,createdAt)
+		INSERT INTO player(teamName,playerName,posi,is_out,created_at)
 		VALUES(#{teamName},#{playerName},#{posi},0, NOW())
 	</insert>
 	<select id="findById" resultType="site.metacoding.SpringFinalProject.domain.player.Player">
@@ -13,13 +13,13 @@
 	<select id="findAll"
 		resultType="site.metacoding.SpringFinalProject.web.dto.response.player.MainDto">
 		SELECT ROW_NUMBER() OVER() AS ROWNO, id, teamName,playerName,posi,
-		TO_CHAR(createdAt,
+		TO_CHAR(created_at,
 		'YYYY-MM-DD') as createdAT
 		FROM player
 	</select>
 	<select id="findToId" resultType="Integer">
 		SELECT id FROM (SELECT ROW_NUMBER() OVER() AS ROWNO,id,
-		teamName,playerName,posi, TO_CHAR(createdAt, 'YYYY-MM-DD') as createdAT
+		teamName,playerName,posi, TO_CHAR(created_at, 'YYYY-MM-DD') as createdAT
 		FROM player) player
 		WHERE
 		rowno=#{rowno}

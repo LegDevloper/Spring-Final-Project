@@ -5,13 +5,13 @@
 <mapper
 	namespace="site.metacoding.SpringFinalProject.domain.team.TeamDao">
 	<insert id="insert">
-		INSERT INTO team(teamName,stadiumName,createdAt)
+		INSERT INTO team(teamName,stadiumName,created_at)
 		VALUES(#{teamName},#{stadiumName},NOW())
 	</insert>
 	<select id="findToId"
 		resultType="Integer">
 		SELECT id FROM (SELECT ROW_NUMBER() OVER() AS ROWNO,id, teamName, stadiumName,
-		TO_CHAR(createdAt, 'YYYY-MM-DD') as createdAT
+		TO_CHAR(created_at, 'YYYY-MM-DD') as createdAT
 		FROM team) team WHERE ROWNO=#{rowno}
 	</select>
 	<select id="findById"
@@ -21,7 +21,7 @@
 	<select id="findAll"
 		resultType="site.metacoding.SpringFinalProject.web.dto.response.team.MainDto">
 		SELECT ROW_NUMBER() OVER() AS ROWNO, id, teamName, stadiumName,
-		TO_CHAR(createdAt, 'YYYY-MM-DD') as createdAT
+		TO_CHAR(created_at, 'YYYY-MM-DD') as createdAT
 		FROM team
 	</select>
 	<select id="findToTeamName"
