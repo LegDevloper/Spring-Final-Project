@@ -2,27 +2,27 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="site.metacoding.SpringFinalProject.domain.team.TeamDao">
+<mapper namespace="site.metacoding.SpringFinalProject.domain.team.TeamDao">
 	<insert id="insert">
 		INSERT INTO team(teamName,stadiumName,created_at)
 		VALUES(#{teamName},#{stadiumName},NOW())
 	</insert>
-	<select id="findToId"
-		resultType="Integer">
-		SELECT id FROM (SELECT ROW_NUMBER() OVER() AS ROWNO,id, teamName, stadiumName,
+	<select id="findToId" resultType="Integer">
+		SELECT id FROM (SELECT ROW_NUMBER() OVER() AS ROWNO,id,
+		teamName, stadiumName,
 		TO_CHAR(created_at, 'YYYY-MM-DD') as createdAT
-		FROM team) team WHERE ROWNO=#{rowno}
+		FROM team) team WHERE
+		ROWNO=#{rowno}
 	</select>
-	<select id="findById"
-		resultType="String">
+	<select id="findById" resultType="String">
 		SELECT teamName FROM team WHERE id = #{id}
 	</select>
 	<select id="findAll"
 		resultType="site.metacoding.SpringFinalProject.web.dto.response.team.MainDto">
-		SELECT ROW_NUMBER() OVER() AS ROWNO, id, teamName, stadiumName,
-		TO_CHAR(created_at, 'YYYY-MM-DD') as createdAT
-		FROM team
+		SELECT ROW_NUMBER() OVER() AS ROWNO, t.id, t.teamName,
+		t.stadiumName,TO_CHAR(t.created_at, 'YYYY-MM-DD') as createdAT
+		FROM team t INNER JOIN stadium s
+		ON t.stadiumName = s.stadiumName
 	</select>
 	<select id="findToTeamName"
 		resultType="site.metacoding.SpringFinalProject.web.dto.response.team.TeamListDto">
@@ -33,6 +33,6 @@
 		UPDATE team SET teamName=#{teamName}, stadiumName=#{stadiumName} WHERE id=#{id}
 	</update>
 	<delete id="deleteById">
-		DELETE FROM team WHERE id=#{id}	
+		DELETE FROM team WHERE id=#{id}
 	</delete>
 </mapper>

@@ -14,7 +14,8 @@ $(".btnUpdate").click(function() {
 });
 
 $(".btnDelete").click(function() {
-	let id = $(".btnDelete").closest('tr').index() + 1;
+	let id = $(this).closest('tr').index() + 1;
+	
 	$.ajax("/delete/stadium/" + id, {
 		type: "DELETE",
 		dataType: "json"

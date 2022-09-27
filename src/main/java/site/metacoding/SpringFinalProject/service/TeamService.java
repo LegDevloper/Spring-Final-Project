@@ -19,6 +19,7 @@ public class TeamService {
 	public void 팀등록(TeamJoinDto teamJoinDto) {
 		teamDao.insert(teamJoinDto);
 	}
+	
 	public List<MainDto> 팀목록보기(){
 		List<MainDto> teamList = teamDao.findAll();
 		
