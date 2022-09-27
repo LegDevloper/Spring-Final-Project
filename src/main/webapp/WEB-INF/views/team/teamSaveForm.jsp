@@ -9,7 +9,7 @@
 <br>
 <div class="d-flex justify-content-center">
 
-	경기장을 고르세요 :&nbsp; <select id="selectBox">
+	<div style="margin-top:5px">경기장을 고르세요 :&nbsp;&nbsp;</div> <select id="selectBox" class="form-control"  style="width: 200px">
 		<c:forEach var="stadiumName" items="${stadiumNameList}"> 
 				<option value="${stadiumName.name}">${stadiumName.name}</option>    
 		</c:forEach>

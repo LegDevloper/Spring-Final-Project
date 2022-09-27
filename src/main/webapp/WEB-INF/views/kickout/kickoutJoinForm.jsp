@@ -8,7 +8,7 @@
 <br>
 <div class="d-flex justify-content-center">
 
-	방출할 선수를 고르세요 :&nbsp; <select id="selectPlayer">
+	<div style="margin-top:5px">방출할 선수를 고르세요 :&nbsp; </div><select id="selectPlayer" class="form-control"  style="width: 200px">
 		<c:forEach var="player" items="${playerList}">
 			<option value="${player.playerName}">${player.playerName}</option>    
 	</c:forEach>

@@ -9,15 +9,15 @@
 
 
 <div class="d-flex justify-content-center">
-	소속팀을 고르세요 :&nbsp; <select id="teamName">
+	<div style="margin-top:5px">소속팀을 고르세요 :&nbsp; </div><select id="teamName" class="form-control"  style="width: 200px">
 		<c:forEach var="teamName" items="${teamNameList}"> 
 				<option value="${teamName.teamName}">${teamName.teamName}</option>    
 		</c:forEach>
 	</select>
 </div>
-
+<br>
 <div class="d-flex justify-content-center">
-	포지션을 고르세요 :&nbsp; <select id="position">
+	<div style="margin-top:5px">포지션을 고르세요 :&nbsp;</div> <select id="position" class="form-control"  style="width: 200px">
 		<option value="position">투수</option>
 		<option value="position">포수</option>
 		<option value="position">1루수</option>
