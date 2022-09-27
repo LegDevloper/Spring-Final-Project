@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.SpringFinalProject.domain.player.PlayerDao">
 	<insert id="insert">
-		INSERT INTO player(teamName,playerName,posi,is_out,created_at)
+		INSERT INTO player(team_name,player_name,posi,is_out,created_at)
 		VALUES(#{teamName},#{playerName},#{posi},0, NOW())
 	</insert>
 	<select id="findById" resultType="site.metacoding.SpringFinalProject.domain.player.Player">
@@ -12,26 +12,26 @@
 	</select>
 	<select id="findAll"
 		resultType="site.metacoding.SpringFinalProject.web.dto.response.player.MainDto">
-		SELECT ROW_NUMBER() OVER() AS ROWNO, p.id, p.teamName,p.playerName,p.posi,
+		SELECT ROW_NUMBER() OVER() AS ROWNO, p.id, p.team_name,p.player_name,p.posi,
 		TO_CHAR(p.created_at, 'YYYY-MM-DD') as createdAT
 		FROM player p LEFT OUTER JOIN team t
-		ON p.teamName
-		= t.teamName
+		ON p.team_name
+		= t.team_name
 	</select>
 	<select id="findToId" resultType="Integer">
 		SELECT r.id
-		FROM (SELECT ROW_NUMBER() OVER() AS ROWNO, p.id, p.teamName,p.playerName,p.posi, TO_CHAR(p.created_at,
+		FROM (SELECT ROW_NUMBER() OVER() AS ROWNO, p.id, p.team_name,p.player_name,p.posi, TO_CHAR(p.created_at,
 		'YYYY-MM-DD') as createdAT
 		FROM player p LEFT OUTER JOIN team t
-		ON p.teamName = t.teamName) r
+		ON p.team_name = t.team_name) r
 		WHERE ROWNO=#{rowno}
 	</select>
 
 	<select id="findToName" resultType="String">
-		SELECT playerName FROM player WHERE id=#{id}
+		SELECT player_name FROM player WHERE id=#{id}
 	</select>
 	<update id="update">
-		UPDATE player SET teamName=#{teamName}, playerName=#{playerName}, posi=#{posi}
+		UPDATE player SET team_name=#{teamName}, player_name=#{playerName}, posi=#{posi}
 		WHERE id=#{id}
 	</update>
 	<delete id="deleteById">

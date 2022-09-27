@@ -36,7 +36,6 @@ public class StadiumController {
 	public String getStadium(Model model) {
 		List<MainDto> stadiumList = stadiumService.경기장목록보기();
 		model.addAttribute("stadiumList", stadiumList);
-
 		return "/stadium/stadiumListForm";
 	}
 
