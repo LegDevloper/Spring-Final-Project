@@ -12,17 +12,19 @@
 	</select>
 	<select id="findAll"
 		resultType="site.metacoding.SpringFinalProject.web.dto.response.player.MainDto">
-		SELECT ROW_NUMBER() OVER() AS ROWNO, id, teamName,playerName,posi,
-		TO_CHAR(created_at,
-		'YYYY-MM-DD') as createdAT
-		FROM player
+		SELECT ROW_NUMBER() OVER() AS ROWNO, p.id, p.teamName,p.playerName,p.posi,
+		TO_CHAR(p.created_at, 'YYYY-MM-DD') as createdAT
+		FROM player p LEFT OUTER JOIN team t
+		ON p.teamName
+		= t.teamName
 	</select>
 	<select id="findToId" resultType="Integer">
-		SELECT id FROM (SELECT ROW_NUMBER() OVER() AS ROWNO,id,
-		teamName,playerName,posi, TO_CHAR(created_at, 'YYYY-MM-DD') as createdAT
-		FROM player) player
-		WHERE
-		rowno=#{rowno}
+		SELECT r.id
+		FROM (SELECT ROW_NUMBER() OVER() AS ROWNO, p.id, p.teamName,p.playerName,p.posi, TO_CHAR(p.created_at,
+		'YYYY-MM-DD') as createdAT
+		FROM player p LEFT OUTER JOIN team t
+		ON p.teamName = t.teamName) r
+		WHERE ROWNO=#{rowno}
 	</select>
 
 	<select id="findToName" resultType="String">
