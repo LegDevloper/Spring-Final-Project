@@ -24,32 +24,33 @@ import site.metacoding.SpringFinalProject.web.dto.response.team.TeamListDto;
 @RequiredArgsConstructor
 @Controller
 public class PlayerController {
-	
+
 	private final PlayerService playerService;
 	private final TeamService teamService;
-	
-	//=====================Create
+
+	// =====================Create
 	@GetMapping("/playerSave")
 	public String playerJoin(Model model) {
 		List<TeamListDto> teamNameList = teamService.팀명보기();
-		model.addAttribute("teamNameList",teamNameList);
+		model.addAttribute("teamNameList", teamNameList);
 		return "/player/playerSaveForm";
 	}
+
 	@PostMapping("/player/join")
 	public @ResponseBody CMRespDto<?> join(@RequestBody PlayerJoinDto playerJoinDto) {
 		playerService.선수등록(playerJoinDto);
-		return new CMRespDto<>(1,"선수등록성공",null);
+		return new CMRespDto<>(1, "선수등록성공", null);
 	}
-	
-	//=====================Read
+
+	// =====================Read
 	@GetMapping("/playerList")
 	public String playerList(Model model) {
 		List<MainDto> playerList = playerService.선수목록보기();
-		model.addAttribute("playerList",playerList);
+		model.addAttribute("playerList", playerList);
 		return "/player/playerListForm";
 	}
-	
-	//=====================Update
+
+	// =====================Update
 	@GetMapping("/player/update/{rowno}")
 	public String teamUpdateForm(@PathVariable Integer rowno, Model model) {
 		List<TeamListDto> teamNameList = teamService.팀명보기();
@@ -58,34 +59,40 @@ public class PlayerController {
 		System.out.println(id);
 		System.out.println("==================");
 		String playerName = playerService.선수이름보기(id);
-		model.addAttribute("id",id);
-		model.addAttribute("teamNameList",teamNameList);
-		model.addAttribute("playerName",playerName);
+		model.addAttribute("id", id);
+		model.addAttribute("teamNameList", teamNameList);
+		model.addAttribute("playerName", playerName);
 		return "/player/playerUpdateForm";
 	}
+
 	@PutMapping("/player/update")
-	public @ResponseBody CMRespDto<?> update(@RequestBody UpdateDto updateDto){
+	public @ResponseBody CMRespDto<?> update(@RequestBody UpdateDto updateDto) {
 		playerService.선수정보수정(updateDto);
-		
+
 		return new CMRespDto<>(1, "선수정보수정 성공", null);
 	}
-	
-	//=====================Delete
+
+	// =====================Delete
 	@PostMapping("/player/delete")
-	public @ResponseBody CMRespDto<?> delete(@RequestParam(value="arr", required=false) String[] arr){
-		Integer []arrInt = new Integer[arr.length];
-		for(int i=0;i<arr.length;i++) {
+	public @ResponseBody CMRespDto<?> delete(@RequestParam(value = "arr", required = false) String[] arr) {
+		Integer[] arrInt = new Integer[arr.length];
+		for (int i = 0; i < arr.length; i++) {
 			Integer rowno = Integer.parseInt(arr[i]);
 			Integer id = playerService.선수번호보기(rowno);
-			arrInt[i]=id;
+			arrInt[i] = id;
 		}
-		for(int i=0;i<arrInt.length;i++) {
+		for (int i = 0; i < arrInt.length; i++) {
 			playerService.선수삭제(arrInt[i]);
 		}
-		return new CMRespDto<>(1,"통신성공",null);
+		return new CMRespDto<>(1, "통신성공", null);
 	}
-	
-	
-	
-	
+
+	// ======================방출선수 ======================
+	@GetMapping("/kickoutJoin")
+	public String kickoutJoin(Model model) {
+		List<MainDto> playerList = playerService.선수목록보기();
+		model.addAttribute("playerList", playerList);
+		return "/kickout/kickoutJoinForm";
+	}
+
 }
