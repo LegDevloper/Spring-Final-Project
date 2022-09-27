@@ -32,34 +32,7 @@
 
 
 
-<script>
-	$("#btnUpdate").click(()=>{
-		let data = {
-				teamName : $("#teamName").val(),
-				id : $("#id").val(),
-				stadiumName : $("#stadiumName option:selected").val()
-		};
-	
-		$.ajax("/team/update",{
-			type: "PUT",
-			dataType: "json",
-			data: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json; charset=utf-8"
-			}
-		}).done((res)=>{
-			if (res.code == 1) {
-				alert("팀정보 수정성공");
-				location.href = "/teamList";
-			}else{
-				alert("수정 실패");
-				
-			}
-		});
-	});
-
-		
-	
+<script src="/js/team.js">
 </script>
 
 

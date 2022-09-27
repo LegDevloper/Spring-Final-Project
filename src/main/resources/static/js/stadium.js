@@ -32,7 +32,7 @@ $(".btnDelete").click(function() {
 		else {
 			alert("삭제실패!");
 		}
-	});
+	});l
 	
 });
 

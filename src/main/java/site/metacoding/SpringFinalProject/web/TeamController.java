@@ -56,7 +56,9 @@ public class TeamController {
 		List<StadiumNameDto> stadiumNameList = stadiumService.경기장이름보기();
 		
 		Integer id = teamService.팀순번보기(rowno);
+		System.out.println("id : "+ id);
 		String teamName = teamService.팀명한건보기(id);
+		
 		model.addAttribute("stadiumNameList",stadiumNameList);
 		model.addAttribute("teamName",teamName);
 		model.addAttribute("id",id);
@@ -64,6 +66,7 @@ public class TeamController {
 	}
 	@PutMapping("/team/update")
 	public @ResponseBody CMRespDto<?> update(@RequestBody UpdateDto updateDto){
+		System.out.println(updateDto.getId());
 		teamService.팀수정하기(updateDto);
 		return new CMRespDto<>(1,"수정성공", null);
 	}

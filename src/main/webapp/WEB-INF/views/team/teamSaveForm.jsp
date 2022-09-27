@@ -29,38 +29,7 @@
 	<button id="btnInsert" class="btn btn-primary" type="button">등록</button>
 </div>
 
-
-
-<script>
-	$("#btnInsert").click(()=>{
-		insert();
-
-	});
-	function insert(){
-		let data = {
-			teamName : $("#teamName").val(),
-			stadiumName : $("#selectBox option:selected"). val()
-		};
-
-		$.ajax("/join/team", {
-			type: "POST",
-			dataType: "json",
-			data: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json"
-			}
-		}).done((res) => {
-			if (res.code == 1) {
-				alert("팀 등록성공");
-				location.href = "/teamList";
-			}else{
-				alert("팀 등록 실패");
-				
-			}
-		});
-	}
-
+<script src="/js/team.js">
 </script>
-
 
 <%@ include file="../layout/footer.jsp"%>
