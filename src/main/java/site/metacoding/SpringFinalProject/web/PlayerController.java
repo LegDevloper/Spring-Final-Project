@@ -55,9 +55,6 @@ public class PlayerController {
 	public String teamUpdateForm(@PathVariable Integer rowno, Model model) {
 		List<TeamListDto> teamNameList = teamService.팀명보기();
 		Integer id = playerService.선수번호보기(rowno);
-		System.out.println("==================");
-		System.out.println(id);
-		System.out.println("==================");
 		String playerName = playerService.선수이름보기(id);
 		model.addAttribute("id", id);
 		model.addAttribute("teamNameList", teamNameList);
@@ -94,5 +91,14 @@ public class PlayerController {
 		model.addAttribute("playerList", playerList);
 		return "/kickout/kickoutJoinForm";
 	}
-
+	// ======================포지션별야구선수=======================
+	@GetMapping("/player/position")
+	public String position(Model model) {
+		String[] positionList = {"1루수","2루수","3루수","투수","포수","유격수","중견수","우익수","좌익수"};
+		List<TeamListDto> teamNameList = teamService.팀명보기();
+		model.addAttribute("teamNameList",teamNameList);
+		model.addAttribute("positionList",positionList);
+		return "/player/positionList";
+	}
+	
 }
