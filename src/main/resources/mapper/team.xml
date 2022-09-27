@@ -13,9 +13,9 @@
 		SELECT @rownum := @rownum+1 AS ROWNO,a.*
 		FROM (
 		SELECT t.id,t.team_name,t.stadium_name,TO_CHAR(t.created_at, 'YYYY-MM-DD') as created_at
-		FROM team t INNER JOIN stadium s ON t.stadium_name = s.stadium_name INNER JOIN (SELECT @rownum :=0) AS
+		FROM team t INNER JOIN stadium s ON t.stadium_name = s.stadium_name INNER JOIN (SELECT @rownum
+		:=0) AS
 		r
-		ON t.stadium_name = s.stadium_name
 		ORDER BY t.team_name) as a
 		) AS totalTable
 		WHERE ROWNO=#{rowno}

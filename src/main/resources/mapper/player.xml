@@ -12,19 +12,28 @@
 	</select>
 	<select id="findAll"
 		resultType="site.metacoding.SpringFinalProject.web.dto.response.player.MainDto">
-		SELECT ROW_NUMBER() OVER() AS ROWNO, p.id, p.team_name,p.player_name,p.posi,
-		TO_CHAR(p.created_at, 'YYYY-MM-DD') as createdAT
-		FROM player p LEFT OUTER JOIN team t
-		ON p.team_name
-		= t.team_name
+		SELECT @rownum := @rownum+1 AS ROWNO, totalTable.*
+		FROM (
+		SELECT
+		p.team_name,p.player_name,p.posi, TO_CHAR(p.created_at, 'YYYY-MM-DD') as createdAT
+		FROM
+		player p
+		LEFT OUTER JOIN team t
+		ON p.team_name = t.team_name INNER JOIN (SELECT @rownum :=0) AS r
+		ORDER BY
+		p.player_name) AS totalTable
 	</select>
 	<select id="findToId" resultType="Integer">
-		SELECT r.id
-		FROM (SELECT ROW_NUMBER() OVER() AS ROWNO, p.id, p.team_name,p.player_name,p.posi, TO_CHAR(p.created_at,
-		'YYYY-MM-DD') as createdAT
+		SELECT id
+		FROM (
+		SELECT @rownum := @rownum+1 AS ROWNO, totalTable.*
+		FROM (
+		SELECT p.id,p.team_name,p.player_name,p.posi, TO_CHAR(p.created_at, 'YYYY-MM-DD') as createdAT
 		FROM player p LEFT OUTER JOIN team t
-		ON p.team_name = t.team_name) r
-		WHERE ROWNO=#{rowno}
+		ON p.team_name = t.team_name INNER JOIN (SELECT @rownum :=0) AS r
+		ORDER BY p.player_name) AS totalTable
+		) AS a
+		WHERE ROWNO = #{rowno}
 	</select>
 
 	<select id="findToName" resultType="String">
